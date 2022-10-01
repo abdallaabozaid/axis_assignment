@@ -157,7 +157,9 @@ class TVShow {
     id = json['id'];
     overview = json['overview'];
     backdropPath = json['backdrop_path'];
-    voteAverage = json['vote_average'];
+    voteAverage = json['vote_average'].runtimeType == int
+        ? double.parse(json['vote_average'].toString())
+        : json['vote_average'];
     mediaType = json['media_type'];
     firstAirDate = json['first_air_date'];
     originCountry = List.from(json['origin_country']);
