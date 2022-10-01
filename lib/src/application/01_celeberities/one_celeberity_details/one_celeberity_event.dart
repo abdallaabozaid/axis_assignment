@@ -8,19 +8,9 @@ abstract class OneCeleberityEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetCeleberityDetailsEvent extends OneCeleberityEvent {
+class GetCeleberityDetailsAndImagesEvent extends OneCeleberityEvent {
   final int id;
-  const GetCeleberityDetailsEvent({
-    required this.id,
-  });
-
-  @override
-  List<Object> get props => [id];
-}
-
-class GetCeleberityImagesEvent extends OneCeleberityEvent {
-  final int id;
-  const GetCeleberityImagesEvent({
+  const GetCeleberityDetailsAndImagesEvent({
     required this.id,
   });
 

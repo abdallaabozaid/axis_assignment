@@ -22,7 +22,8 @@ class CeleberityItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.pushNamed(context, detailsScreen),
+      onTap: () =>
+          Navigator.pushNamed(context, detailsScreen, arguments: celebrity),
       child: Container(
         margin: EdgeInsets.all(15.h),
         padding: EdgeInsets.all(10.h),

@@ -42,9 +42,11 @@ class _CelebertitiesBuilderState extends State<CelebertitiesBuilder> {
             AppBlocEvents.getAllCelebsData(context, pageIndex: 1);
           },
           child: !state.isLoading && celebs.isEmpty
-              ? const EmptyBuilder(
+              ? EmptyBuilder(
                   emptyLabel:
                       'Something went wrong , please check your internet connection and try again .',
+                  onRefresh: () =>
+                      AppBlocEvents.getAllCelebsData(context, pageIndex: 1),
                 )
               : ListView.builder(
                   controller: scrollcontroller,

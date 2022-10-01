@@ -8,6 +8,7 @@ class AppTheme {
     // fontFamily: '',
     brightness: Brightness.light,
     colorScheme: lightColorScheme,
+    fontFamily: 'Crete Round',
     scaffoldBackgroundColor: Colors.grey.shade100,
     elevatedButtonTheme: _elevatedBtnTheme(),
   );

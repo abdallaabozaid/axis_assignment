@@ -6,8 +6,10 @@ class EmptyBuilder extends StatelessWidget {
   const EmptyBuilder({
     Key? key,
     required this.emptyLabel,
+    required this.onRefresh,
   }) : super(key: key);
   final String emptyLabel;
+  final VoidCallback onRefresh;
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +19,15 @@ class EmptyBuilder extends StatelessWidget {
         Center(
           child: Padding(
             padding: EdgeInsets.all(12.w),
-            child: Text(
-              emptyLabel,
-              textAlign: TextAlign.center,
+            child: Column(
+              children: [
+                Text(
+                  emptyLabel,
+                  textAlign: TextAlign.center,
+                ),
+                IconButton(
+                    onPressed: onRefresh, icon: Icon(Icons.refresh_rounded))
+              ],
             ),
           ),
         ),

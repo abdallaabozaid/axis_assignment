@@ -14,40 +14,30 @@ part 'one_celeberity_state.dart';
 class OneCeleberityBloc extends Bloc<OneCeleberityEvent, OneCeleberityState> {
   final ICeleberitiesRepo _repo;
   OneCeleberityBloc(this._repo) : super(OneCeleberityState.initial()) {
-    on<GetCeleberityDetailsEvent>(_onGetCeleberityDetailsEvent);
-    on<GetCeleberityImagesEvent>(_onGetCeleberityImagesEvent);
+    on<GetCeleberityDetailsAndImagesEvent>(
+        _onGetCeleberityDetailsAndImagesEvent);
+    // on<GetCeleberityImagesEvent>(_onGetCeleberityImagesEvent);
   }
 
-  FutureOr<void> _onGetCeleberityDetailsEvent(
-      GetCeleberityDetailsEvent event, Emitter<OneCeleberityState> emit) async {
+  FutureOr<void> _onGetCeleberityDetailsAndImagesEvent(
+      GetCeleberityDetailsAndImagesEvent event,
+      Emitter<OneCeleberityState> emit) async {
     emit(state.copyWith(
       detailsFailureOrSuccessOption: none(),
       isLoading: true,
     ));
 
-    final failureOrSuccess = await _repo.getCeleberityDetails(
+    final detailsFailureOrSuccess = await _repo.getCeleberityDetails(
+      id: event.id,
+    );
+
+    final imagesFailureOrSuccess = await _repo.getCeleberityImages(
       id: event.id,
     );
 
     emit(state.copyWith(
-      detailsFailureOrSuccessOption: some(failureOrSuccess),
-      isLoading: false,
-    ));
-  }
-
-  FutureOr<void> _onGetCeleberityImagesEvent(
-      GetCeleberityImagesEvent event, Emitter<OneCeleberityState> emit) async {
-    emit(state.copyWith(
-      imagesFailureOrSuccessOption: none(),
-      isLoading: true,
-    ));
-
-    final failureOrSuccess = await _repo.getCeleberityImages(
-      id: event.id,
-    );
-
-    emit(state.copyWith(
-      imagesFailureOrSuccessOption: some(failureOrSuccess),
+      detailsFailureOrSuccessOption: some(detailsFailureOrSuccess),
+      imagesFailureOrSuccessOption: some(imagesFailureOrSuccess),
       isLoading: false,
     ));
   }
