@@ -24,17 +24,17 @@ class Celebrity {
     gender = json['gender'];
     id = json['id'];
     // modeling 'known for' items depending on media type >>
-    knownFor = List.from(json['known_for'])
-        .map(
-          (e) => json['known_for']['media_type'] == 'movie'
-              ? Movie.fromJson(e)
-              : TVShow.fromJson(e),
-        )
-        .toList();
+    knownFor = List.from(json['known_for']).map(
+      (e) {
+        return e['media_type'] == 'movie'
+            ? Movie.fromJson(e)
+            : TVShow.fromJson(e);
+      },
+    ).toList();
     knownForDepartment = json['known_for_department'];
     name = json['name'];
     popularity = json['popularity'];
-    profilePath = json['profile_path'];
+    profilePath = json['profile_path'] ?? '';
   }
 
   Map<String, dynamic> toJson() {
@@ -96,7 +96,9 @@ class Movie {
     releaseDate = json['release_date'];
     title = json['title'];
     video = json['video'];
-    voteAverage = json['vote_average'];
+    voteAverage = json['vote_average'].runtimeType == int
+        ? double.parse(json['vote_average'].toString())
+        : json['vote_average'];
     voteCount = json['vote_count'];
   }
 
@@ -123,7 +125,6 @@ class Movie {
 class TVShow {
   TVShow({
     this.posterPath,
-    required this.popularity,
     required this.id,
     required this.overview,
     this.backdropPath,
@@ -138,7 +139,6 @@ class TVShow {
     required this.originalName,
   });
   late final String? posterPath;
-  late final double popularity;
   late final int id;
   late final String overview;
   late final String? backdropPath;
@@ -154,15 +154,14 @@ class TVShow {
 
   TVShow.fromJson(Map<String, dynamic> json) {
     posterPath = json['poster_path'];
-    popularity = json['popularity'];
     id = json['id'];
     overview = json['overview'];
     backdropPath = json['backdrop_path'];
     voteAverage = json['vote_average'];
     mediaType = json['media_type'];
     firstAirDate = json['first_air_date'];
-    originCountry = json['origin_country'];
-    genreIds = List.castFrom<dynamic, int>(json['genre_ids']);
+    originCountry = List.from(json['origin_country']);
+    genreIds = List.from(json['genre_ids']);
     originalLanguage = json['original_language'];
     voteCount = json['vote_count'];
     name = json['name'];
@@ -172,7 +171,6 @@ class TVShow {
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
     _data['poster_path'] = posterPath;
-    _data['popularity'] = popularity;
     _data['id'] = id;
     _data['overview'] = overview;
     _data['vote_average'] = voteAverage;

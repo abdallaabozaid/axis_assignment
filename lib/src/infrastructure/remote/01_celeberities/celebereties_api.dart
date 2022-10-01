@@ -15,7 +15,6 @@ class CeleberitiesApi {
         queryParameters: {'api_key': apiKey, 'page': pageIndex},
       );
 
-      print(response.data);
       return response.data;
     } catch (e) {
       if (kDebugMode) {
@@ -33,14 +32,13 @@ class CeleberitiesApi {
         id,
         queryParameters: {'api_key': apiKey},
       );
-      print(response.data);
 
       return response.data;
     } catch (e) {
       if (kDebugMode) {
         print("get one Celeberity details API error : ${e.toString()}");
       }
-      rethrow;
+      return null;
     }
   }
 
@@ -49,17 +47,16 @@ class CeleberitiesApi {
   }) async {
     try {
       final Response response = await dio.get(
-        id + '/' + imagesEndPoint,
+        '$id/$imagesEndPoint',
         queryParameters: {'api_key': apiKey},
       );
-      print(response.data);
 
       return response.data;
     } catch (e) {
       if (kDebugMode) {
         print("get one Celeberity details API error : ${e.toString()}");
       }
-      rethrow;
+      return null;
     }
   }
 }

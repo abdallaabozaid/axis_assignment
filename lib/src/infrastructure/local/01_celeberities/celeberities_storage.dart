@@ -7,8 +7,8 @@ class CeleberitiesStorage {
   static final _storage = Storage.preferences;
 
   static const String _key = 'celeberities-data';
-  static Future<void> saveData(CeleberitiesResponseModel data) async {
-    final String stringData = _convertToString(data.toJson());
+  static Future<void> saveData(Map<String, dynamic> jsonData) async {
+    final String stringData = _convertToString(jsonData);
     await _storage.setString(_key, stringData);
   }
 
