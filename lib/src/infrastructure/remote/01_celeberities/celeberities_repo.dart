@@ -62,7 +62,9 @@ class CeleberitiesRepo extends ICeleberitiesRepo {
     } catch (e) {
 // (6)
 
-      return left(GetDataFailure.dataHandlingError);
+// TODO remove rethrow
+      rethrow;
+      // return left(GetDataFailure.dataHandlingError);
     }
   }
 
@@ -91,8 +93,9 @@ class CeleberitiesRepo extends ICeleberitiesRepo {
       }
     } catch (e) {
 // (4)
-
-      return left(GetDataFailure.dataHandlingError);
+// TODO
+      rethrow;
+      // return left(GetDataFailure.dataHandlingError);
     }
   }
 
@@ -122,7 +125,9 @@ class CeleberitiesRepo extends ICeleberitiesRepo {
       }
     } catch (e) {
 // (4)
-      return left(GetDataFailure.dataHandlingError);
+// TODO
+      rethrow;
+      // return left(GetDataFailure.dataHandlingError);
     }
   }
 }

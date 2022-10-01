@@ -7,6 +7,8 @@ class AppLoader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const LinearProgressIndicator();
+    return const LinearProgressIndicator(
+      backgroundColor: Colors.transparent,
+    );
   }
 }

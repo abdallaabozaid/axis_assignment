@@ -2,7 +2,6 @@ import 'package:axis_assignment/src/application/01_celeberities/all_celeberities
 import 'package:axis_assignment/src/presentation/00_core/common_widgets/app_loader.dart';
 import 'package:axis_assignment/src/presentation/00_core/common_widgets/common_app_bar.dart';
 import 'package:axis_assignment/src/presentation/03_home_screen/widgets/celeberities_builder.dart';
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,23 +17,20 @@ class HomeScreen extends StatelessWidget {
         child: const CommonAppBar(title: 'Celeberity'),
       ),
       body: BlocBuilder<AllCeleberitiesBloc, AllCeleberitiesState>(
+        buildWhen: (previous, current) =>
+            previous.isLoading != current.isLoading,
         builder: (context, state) {
-          return Column(
+          return Stack(
+            alignment: Alignment.topCenter,
             children: [
-              if (state.isLoading && state.failureOrSuccessOption == none())
-                const AppLoader(),
-              Expanded(
-                child: BlocBuilder<AllCeleberitiesBloc, AllCeleberitiesState>(
-                  builder: (context, state) {
-                    return state.failureOrSuccessOption.fold(
-                        () => Container(),
-                        (a) => a.fold(
-                            (l) => Container(),
-                            (r) =>
-                                CelebertitiesBuilder(celebs: r.celeberities)));
-                  },
-                ),
-              )
+              Column(
+                children: const [
+                  Expanded(
+                    child: CelebertitiesBuilder(),
+                  )
+                ],
+              ),
+              if (state.isLoading) const AppLoader(),
             ],
           );
         },
