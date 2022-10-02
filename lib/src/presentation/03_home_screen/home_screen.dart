@@ -24,10 +24,17 @@ class HomeScreen extends StatelessWidget {
             alignment: Alignment.topCenter,
             children: [
               Column(
-                children: const [
-                  Expanded(
+                children: [
+                  const Expanded(
                     child: CelebertitiesBuilder(),
-                  )
+                  ),
+                  if (state.isLoading)
+                    Container(
+                      margin: EdgeInsets.all(12.w),
+                      width: 20.w,
+                      height: 20.w,
+                      child: const CircularProgressIndicator(),
+                    )
                 ],
               ),
               if (state.isLoading) const AppLoader(),
