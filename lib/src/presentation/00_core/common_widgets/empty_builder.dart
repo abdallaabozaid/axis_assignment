@@ -26,7 +26,8 @@ class EmptyBuilder extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 IconButton(
-                    onPressed: onRefresh, icon: Icon(Icons.refresh_rounded))
+                    onPressed: onRefresh,
+                    icon: const Icon(Icons.refresh_rounded))
               ],
             ),
           ),

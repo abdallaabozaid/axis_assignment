@@ -6,6 +6,6 @@ class AppCommanCommands {
     required String imagePath,
     required ProfileImageSize size,
   }) {
-    return '$imagesBaseUrl' + size.size + '$imagePath';
+    return '$imagesBaseUrl${size.size}$imagePath';
   }
 }

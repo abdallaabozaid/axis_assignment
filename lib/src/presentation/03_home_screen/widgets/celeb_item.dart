@@ -60,16 +60,17 @@ class CeleberityItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   PrimaryButton(
-                    onPressed: () {},
+                    onPressed: () => Navigator.pushNamed(context, detailsScreen,
+                        arguments: celebrity),
                     label: const Text('details'),
                     width: 80.w,
-                    height: 36.h,
+                    height: 32.h,
                   ),
                   SecondaryButton(
                     onPressed: () {},
                     label: const Text('known'),
                     width: 80.w,
-                    height: 36.h,
+                    height: 32.h,
                   )
                 ],
               ),

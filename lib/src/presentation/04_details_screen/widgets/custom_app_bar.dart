@@ -16,10 +16,10 @@ class CustomSliverAppBar extends StatelessWidget {
     return SliverAppBar(
       backgroundColor: Colors.white,
       flexibleSpace: HeaderImage(mainImageUrl: mainImage),
-      expandedHeight: 300,
-      collapsedHeight: 30,
-      toolbarHeight: 30,
-      iconTheme: const IconThemeData(color: AppColors.appMainColor, size: 30),
+      expandedHeight: 330.h,
+      collapsedHeight: 40.h,
+      toolbarHeight: 40.h,
+      iconTheme: IconThemeData(color: AppColors.appMainColor, size: 30.w),
       systemOverlayStyle: const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         statusBarIconBrightness: Brightness.light,
